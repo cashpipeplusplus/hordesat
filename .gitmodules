@@ -1,0 +1,6 @@
+[submodule "submodules/minisat"]
+	path = submodules/minisat
+	url = https://github.com/cashpipeplusplus/minisat
+[submodule "submodules/lingeling"]
+	path = submodules/lingeling
+	url = https://github.com/cashpipeplusplus/lingeling

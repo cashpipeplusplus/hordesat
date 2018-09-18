@@ -44,9 +44,6 @@ public:
 	// Get the number of variables of the formula
 	virtual int getVariablesCount() = 0;
 
-	// Get a variable suitable for search splitting
-	virtual int getSplittingVariable() = 0;
-
 	// Set initial phase for a given variable
 	virtual void setPhase(const int var, const bool phase) = 0;
 

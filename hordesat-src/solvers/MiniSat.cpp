@@ -45,12 +45,6 @@ int MiniSat::getVariablesCount() {
 	return solver->nVars();
 }
 
-// Get a variable suitable for search splitting
-int MiniSat::getSplittingVariable() {
-	return solver->lastDecision + 1;
-}
-
-
 // Set initial phase for a given variable
 void MiniSat::setPhase(const int var, const bool phase) {
 	solver->setPolarity(var-1, phase ? l_True : l_False);
@@ -92,7 +86,7 @@ SatResult MiniSat::solve(const vector<int>& assumptions) {
 		for(size_t i = 1; i < learnedClausesToAdd[ind].size(); i++) {
 			mlcls.push(MINI_LIT(learnedClausesToAdd[ind][i]));
 		}
-		solver->addLearnedClause(mlcls);
+		solver->addLearntClause(mlcls);
 	}
 	learnedClausesToAdd.clear();
 	clauseAddingLock.unlock();
@@ -168,8 +162,8 @@ void MiniSat::addLearnedClauses(vector<vector<int> >& clauses) {
 	}
 }
 
-void miniLearnCallback(const vec<Lit>& cls, void* issuer) {
-	MiniSat* mp = (MiniSat*)issuer;
+void miniLearnCallback(const vec<Lit>& cls, void* context) {
+	MiniSat* mp = (MiniSat*)context;
 	if (cls.size() > mp->learnedLimit) {
 		return;
 	}
@@ -187,8 +181,8 @@ void miniLearnCallback(const vec<Lit>& cls, void* issuer) {
 
 void MiniSat::setLearnedClauseCallback(LearnedClauseCallback* callback, int solverId) {
 	this->callback = callback;
-	solver->learnedClsCallback = miniLearnCallback;
-	solver->issuer = this;
+	solver->learnt_clause_callback = miniLearnCallback;
+	solver->learnt_clause_callback_context = this;
 	learnedLimit = 3;
 	myId = solverId;
 }

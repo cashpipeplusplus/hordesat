@@ -126,12 +126,6 @@ int Lingeling::getVariablesCount() {
 	return lglnvars(solver);
 }
 
-// Get a variable suitable for search splitting
-int Lingeling::getSplittingVariable() {
-	//TODO not sure what this is?
-	return lglookahead(solver);
-}
-
 // Set initial phase for a given variable
 void Lingeling::setPhase(const int var, const bool phase) {
 	lglsetphase(solver, phase ? var : -var);

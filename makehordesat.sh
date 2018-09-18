@@ -14,6 +14,6 @@ make)
 make)
 
 # make hordesat
-(cd hordesat-src
+(cd src
 make
 mv hordesat ..)

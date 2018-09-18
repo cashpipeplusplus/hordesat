@@ -21,4 +21,5 @@ code is on github at https://github.com/arminbiere/lingeling
 
 # Build and use HordeSat
 
-run the ./makehordesat.sh script.
+cmake CMakeLists.txt
+make

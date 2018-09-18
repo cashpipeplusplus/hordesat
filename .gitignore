@@ -1,0 +1,13 @@
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+libminisat.a
+minisat
+
+liblingeling.a
+lingeling
+
+hordesat
